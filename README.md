@@ -1,4 +1,4 @@
-Armycreator containers
+Armycreator contributing documentation 
 ============
 
 This repository tell us how to develop for armycreator website.
