@@ -66,3 +66,11 @@ It may be a problem with SELinux, you can read [this blog post](http://www.proje
 You can do something like this:
   * `chcon -Rt svirt_sandbox_file_t /the/path/to/your/container-folder`
   * `chcon -Rt svirt_sandbox_file_t /the/path/to/your/website-folder`
+  
+### Want to remove everything docker-related ?
+```sh
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi $(docker images -q)
+```
