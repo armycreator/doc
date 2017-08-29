@@ -27,9 +27,35 @@ You should see the armycreator homepage.
 Connect to site with user and password: `admin` / `admin`
 
 ## Want to access the API ?
-The domain name will be `http://api.127.0.0.1.xip.io` and `http://oauth2.127.0.0.1.xip.io`
+The domain name will be `http://api.127.0.0.1.xip.io:81` and `http://oauth2.127.0.0.1.xip.io:81`
 
-More documentation to come...
+### Get a valid access token 
+```sh
+curl -X POST  http://oauth2.127.0.0.1.xip.io:81/oauth/v2/token \
+  -F 'client_id=1_1fmv6y40q7r440oc48sswwc40sos88ww408088o0c8g8wko40c' \
+  -F 'client_secret=5qquyxdde4g0g8kkwcgso40kk4gcwckg44wgks0484ko8cs0o' \
+  -F 'grant_type=password' \
+  -F 'username=admin' \
+  -F 'password=admin'
+```
+or with a tool like Postman by selecting "POST" method and form-data in body
+
+Client id and client secret are valid in development only.
+
+The access token is valid one hour.
+
+The results will looks like this:
+```json
+{
+  "access_token": "MzllYTgyMDg2MmEzYWIwYzVlYWExZjExMTcxNzIwNWE3ZmMyMjllNzQxMWM4MDBiODBkNGI5MjE1Zjg4YTYzYg",
+  "expires_in": 3600,
+  "token_type": "bearer",
+  "scope": null,
+  "refresh_token": "YTJkNmQ3YzA1OWY0YjQ1ZjYxMWUxOWQyZGQxOTY1MTRiN2I4OTFkNmJhMjcxYmU3ZDg4NDEyNTgyZWRhOTRlYg"
+}
+```
+
+Every request you will make to the API will need to have an "Authorisation" header with value `Bearer ValueOfTheAccessTokenKey`
 
 ## How do I manage assets, cache, where is the symfony command, etc.
 As everything is managed by docker and docker-compose, you can do everything with them, but the `build.sh` file is here to help you do anything you want.
